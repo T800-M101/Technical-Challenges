@@ -40,4 +40,4 @@ src/app/
 
 ## 📬 Contact
 
-[LinkedIn](www.linkedin.com/in/guillermo-moran-8290b0106) · [GitHub](https://github.com/T800-M101)
+[LinkedIn](https://www.linkedin.com/in/guillermo-moran-8290b0106) · [GitHub](https://github.com/T800-M101)
