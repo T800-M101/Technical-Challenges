@@ -1,0 +1,53 @@
+<div class="min-h-screen bg-neutral-950 text-white">
+
+      <!-- Top nav -->
+      <nav class="border-b border-neutral-800 bg-neutral-950/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+          <button (click)="goBack()" class="text-neutral-400 hover:text-white text-sm font-mono transition-colors flex items-center gap-2 cursor-pointer">
+            ← Go Back
+          </button>
+          <div class="flex items-center gap-4">
+            <span [class]="difficultyClass" class="text-xs font-mono px-2 py-1 rounded-full">
+              {{ challenge.difficulty }}
+            </span>
+            <a
+              [href]="challenge.githubUrl"
+              target="_blank"
+              class="text-xs font-mono text-neutral-400 hover:text-cyan-400 border border-neutral-700
+                     hover:border-cyan-400 px-3 py-1.5 rounded transition-all duration-200">
+              View on GitHub ↗
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Challenge header -->
+      <header class="max-w-5xl mx-auto px-6 pt-12 pb-8 border-b border-neutral-800">
+        <div class="flex flex-wrap gap-2 mb-4">
+          @for (tag of challenge.tags; track tag) {
+            <span class="text-xs font-mono text-neutral-500 bg-neutral-800 border border-neutral-700 px-2 py-0.5 rounded">
+              {{ tag }}
+            </span>
+          }
+        </div>
+        <h1 class="text-3xl font-bold mb-3">{{ challenge.title }}</h1>
+        <p class="text-neutral-400 leading-relaxed max-w-2xl">{{ challenge.description }}</p>
+
+        <!-- Technical highlights -->
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-3">
+          @for (h of challenge.highlights; track h) {
+            <div class="bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3">
+              <span class="text-cyan-400 text-xs font-mono">› </span>
+              <span class="text-neutral-300 text-xs font-mono">{{ h }}</span>
+            </div>
+          }
+        </div>
+      </header>
+
+      <!-- Demo area -->
+      <main class="max-w-5xl mx-auto px-6 py-10">
+        <p class="text-xs font-mono text-neutral-600 uppercase tracking-widest mb-6">Live demo</p>
+        <ng-content></ng-content>
+      </main>
+
+    </div>

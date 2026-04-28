@@ -1,0 +1,237 @@
+<app-challenge-shell [challenge]="challenge">
+
+  <div class="max-w-lg mx-auto">
+
+    <!-- Submit success state -->
+    @if (submitted) {
+      <div class="bg-green-900/30 border border-green-700 rounded-xl p-8 text-center">
+        <div class="text-4xl mb-4">✓</div>
+        <h3 class="text-green-400 font-semibold text-lg mb-2">Form submitted</h3>
+        <p class="text-neutral-400 text-sm mb-2">Data received:</p>
+        <pre class="text-left text-xs text-neutral-300 bg-neutral-900 rounded-lg p-4 overflow-auto">{{ submittedData | json }}</pre>
+        <button
+          (click)="reset()"
+          class="mt-6 px-6 py-2 bg-neutral-800 hover:bg-neutral-700 text-white text-sm rounded-lg transition-colors">
+          Resetear
+        </button>
+      </div>
+    }
+
+    <!-- Form -->
+    @if (!submitted) {
+      <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        class="space-y-5">
+
+        <!-- Username -->
+        <div>
+          <label class="block text-sm font-mono text-neutral-400 mb-1.5">
+            Username
+          </label>
+          <input
+            formControlName="username"
+            type="text"
+            placeholder="memo_dev"
+            [class]="inputClass('username')"
+          />
+          @if (showErrors('username')) {
+            <div class="mt-1.5 space-y-1">
+              @if (hasError('username', 'required')) {
+                <p class="text-red-400 text-xs font-mono">
+                  › Required
+                </p>
+              }
+              @if (hasError('username', 'minlength')) {
+                <p class="text-red-400 text-xs font-mono">
+                  › Minimum 3 characters
+                </p>
+              }
+              @if (hasError('username', 'usernameFormat')) {
+                <p class="text-red-400 text-xs font-mono">
+                  › Only letters, numbers, and underscore
+                </p>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="block text-sm font-mono text-neutral-400 mb-1.5">
+            Email
+            @if (isValidating('email')) {
+              <span class="ml-2 text-cyan-400 text-xs animate-pulse">
+                checking...
+              </span>
+            }
+          </label>
+          <input
+            formControlName="email"
+            type="email"
+            placeholder="memo@ejemplo.com"
+            [class]="inputClass('email')"
+          />
+          @if (showErrors('email')) {
+            <div class="mt-1.5 space-y-1">
+              @if (hasError('email', 'required')) {
+                <p class="text-red-400 text-xs font-mono">
+                  › Required
+                </p>
+              }
+              @if (hasError('email', 'email')) {
+                <p class="text-red-400 text-xs font-mono">
+                  › Please enter a valid email format
+                </p>
+              }
+              @if (hasError('email', 'emailTaken')) {
+                <p class="text-red-400 text-xs font-mono">
+                  › This email is already registered
+                </p>
+              }
+            </div>
+          }
+          @if (!showErrors('email') && ctrl('email').valid && ctrl('email').value) {
+            <p class="mt-1.5 text-green-400 text-xs font-mono">
+              › Email available ✓
+            </p>
+          }
+        </div>
+
+        <!-- Password group -->
+        <div formGroupName="passwords" class="space-y-4">
+
+          <!-- Password -->
+          <div>
+            <label class="block text-sm font-mono text-neutral-400 mb-1.5">Password</label>
+            <input
+              formControlName="password"
+              type="password"
+              placeholder="••••••••"
+              [class]="inputClass('password', 'passwords')"
+            />
+
+            <!-- Strength indicators -->
+            @if (ctrl('password', 'passwords').value) {
+              <div class="mt-2 flex gap-2">
+                <span [class]="strengthDot(passwordChecks.hasLower)" class="text-xs font-mono">
+                  {{ passwordChecks.hasLower ? '✓' : '○' }} lowercase
+                </span>
+                <span [class]="strengthDot(passwordChecks.hasUpper)" class="text-xs font-mono">
+                  {{ passwordChecks.hasUpper ? '✓' : '○' }} uppercase
+                </span>
+                <span [class]="strengthDot(passwordChecks.hasNumber)" class="text-xs font-mono">
+                  {{ passwordChecks.hasNumber ? '✓' : '○' }} number
+                </span>
+              </div>
+            }
+
+            @if (showErrors('password', 'passwords')) {
+              <div class="mt-1.5">
+                @if (hasError('password', 'required', 'passwords')) {
+                  <p class="text-red-400 text-xs font-mono">
+                    › Required
+                  </p>
+                }
+                @if (hasError('password', 'minlength', 'passwords')) {
+                  <p class="text-red-400 text-xs font-mono">
+                    › Minimum 8 characters
+                  </p>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Confirm password -->
+          <div>
+            <label class="block text-sm font-mono text-neutral-400 mb-1.5">Confirm password</label>
+            <input
+              formControlName="confirmPassword"
+              type="password"
+              placeholder="••••••••"
+              [class]="inputClass('confirmPassword', 'passwords')"
+            />
+            @if (passwordGroupError && ctrl('confirmPassword', 'passwords').touched) {
+              <div class="mt-1.5">
+                <p class="text-red-400 text-xs font-mono">› Passwords does not match</p>
+              </div>
+            }
+          </div>
+
+        </div>
+
+        <!-- Role -->
+        <div>
+          <label class="block text-sm font-mono text-neutral-400 mb-1.5">Rol</label>
+          <select
+            formControlName="role"
+            [class]="inputClass('role')">
+            <option value="" disabled>Select a rol</option>
+            <option value="developer">Developer</option>
+            <option value="designer">Designer</option>
+            <option value="manager">Manager</option>
+          </select>
+          @if (showErrors('role')) {
+            <div class="mt-1.5">
+              <p class="text-red-400 text-xs font-mono">› Select a rol</p>
+            </div>
+          }
+        </div>
+
+        <!-- Terms -->
+        <div class="flex items-start gap-3">
+          <input
+            formControlName="terms"
+            type="checkbox"
+            id="terms"
+            class="mt-0.5 accent-cyan-400 w-4 h-4 cursor-pointer"
+          />
+          <label for="terms" class="text-sm text-neutral-400 cursor-pointer">
+            I accept the
+            <span class="text-cyan-400 underline">Terms and conditions</span>
+          </label>
+        </div>
+        @if (showErrors('terms')) {
+          <div class="-mt-3">
+            <p class="text-red-400 text-xs font-mono">› You must accept the terms</p>
+          </div>
+        }
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          [disabled]="form.invalid || form.pending || loading"
+          class="w-full py-3 rounded-xl font-mono text-sm transition-all duration-200
+                 disabled:opacity-40 disabled:cursor-not-allowed
+                 bg-cyan-400 text-neutral-950 hover:bg-cyan-300
+                 active:scale-[0.98]">
+          @if (!loading) {
+            <span>Register</span>
+          }
+          @if (loading) {
+            <span class="animate-pulse">Sending...</span>
+          }
+        </button>
+
+        <!-- Form status debug (useful for employers) -->
+        <div class="mt-4 p-3 bg-neutral-900 rounded-lg border border-neutral-800">
+          <p class="text-xs font-mono text-neutral-600 mb-2">Form status</p>
+          <div class="flex gap-4 text-xs font-mono">
+            <span [class]="form.valid ? 'text-green-400' : 'text-red-400'">
+              {{ form.valid ? 'VALID' : 'INVALID' }}
+            </span>
+            <span [class]="form.pending ? 'text-yellow-400' : 'text-neutral-600'">
+              {{ form.pending ? 'PENDING' : 'RESOLVED' }}
+            </span>
+            <span [class]="form.dirty ? 'text-cyan-400' : 'text-neutral-600'">
+              {{ form.dirty ? 'DIRTY' : 'PRISTINE' }}
+            </span>
+          </div>
+        </div>
+
+      </form>
+    }
+
+  </div>
+
+</app-challenge-shell>
