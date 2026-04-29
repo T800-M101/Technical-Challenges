@@ -11,11 +11,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/reactive-form/reactive-form.component').then(m => m.ReactiveFormComponent),
   },
-  // {
-  //   path: 'http-api',
-  //   loadComponent: () =>
-  //     import('./features/http-api/http-api.component').then(m => m.HttpApiComponent),
-  // },
+  {
+    path: 'http-api',
+    loadComponent: () =>
+      import('./features/http-api/http-api.component').then(m => m.HttpApiComponent),
+  },
   // {
   //   path: 'auth-guard',
   //   loadComponent: () =>

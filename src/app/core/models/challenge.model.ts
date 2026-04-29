@@ -6,7 +6,6 @@ export interface Challenge {
   description: string;
   difficulty: Difficulty;
   tags: string[];
-  githubUrl: string;
   route: string;
   completedAt: string;
   highlights: string[];

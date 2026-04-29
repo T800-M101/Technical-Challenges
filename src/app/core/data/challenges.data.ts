@@ -8,9 +8,8 @@ export const CHALLENGES: Challenge[] = [
       'Registration form with synchronous validations, asynchronous validations, and cross-field validators. Error state management and visual feedback.',
     difficulty: 'intermediate',
     tags: ['Forms', 'Validation', 'RxJS'],
-    githubUrl: 'https://github.com/TU_USUARIO/angular-challenges-portfolio/tree/main/src/app/features/reactive-form',
     route: '/reactive-form',
-    completedAt: '2024-01',
+    completedAt: '2026-04',
     highlights: [
       'FormBuilder with typed AbstractControl',
       'Async validator simulating HTTP call',
@@ -24,9 +23,8 @@ export const CHALLENGES: Challenge[] = [
       'Real-time country search with debounce, error handling, loading states, and cancellation of previous requests with switchMap.',
     difficulty: 'intermediate',
     tags: ['HTTP', 'RxJS', 'API'],
-    githubUrl: 'https://github.com/TU_USUARIO/angular-challenges-portfolio/tree/main/src/app/features/http-api',
     route: '/http-api',
-    completedAt: '2024-02',
+    completedAt: '2026-04',
     highlights: [
       'debounceTime + switchMap to cancel requests',
       'Typed HTTP responses with generics',
@@ -40,9 +38,8 @@ export const CHALLENGES: Challenge[] = [
       'Authentication system with functional guards, post-login redirection, nested route protection, and token management in localStorage.',
     difficulty: 'advanced',
     tags: ['Router', 'Guards', 'Auth'],
-    githubUrl: 'https://github.com/TU_USUARIO/angular-challenges-portfolio/tree/main/src/app/features/auth-guard',
     route: '/auth-guard',
-    completedAt: '2024-03',
+    completedAt: '2026-04',
     highlights: [
       'Functional canActivate (Angular 15+)',
       'Redirect with preserved returnUrl',
@@ -56,9 +53,8 @@ export const CHALLENGES: Challenge[] = [
       'Set of reusable components: Button, Input, Modal, Card, and Badge. Each with configurable @Input(), slots with ng-content, and encapsulated styles.',
     difficulty: 'advanced',
     tags: ['Components', 'Library', 'CSS'],
-    githubUrl: 'https://github.com/TU_USUARIO/angular-challenges-portfolio/tree/main/src/app/features/component-library',
     route: '/component-library',
-    completedAt: '2024-04',
+    completedAt: '2026-04',
     highlights: [
       'ng-content for flexible composition',
       'ViewEncapsulation.Emulated vs None',
