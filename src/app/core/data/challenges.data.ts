@@ -46,19 +46,19 @@ export const CHALLENGES: Challenge[] = [
       'AuthService with BehaviorSubject',
     ],
   },
-  {
-    id: 'component-library',
-    title: 'UI Component Library',
-    description:
-      'Set of reusable components: Button, Input, Modal, Card, and Badge. Each with configurable @Input(), slots with ng-content, and encapsulated styles.',
-    difficulty: 'advanced',
-    tags: ['Components', 'Library', 'CSS'],
-    route: '/component-library',
-    completedAt: '2026-04',
-    highlights: [
-      'ng-content for flexible composition',
-      'ViewEncapsulation.Emulated vs None',
-      'ChangeDetectionStrategy.OnPush on all components',
-    ],
-  },
+ {
+  id: 'signals-store',
+  title: 'State Management with Signals',
+  description:
+    'Global store implementation using Angular Signals. Features a shopping cart with real-time price calculations, item persistence, and granular reactivity.',
+  difficulty: 'advanced',
+  tags: ['Signals', 'State', 'Reactive'],
+  route: '/signals-store',
+  completedAt: '2026-04',
+  highlights: [
+    'Signal-based Store (Store Pattern)',
+    'computed() for derived state (Tax, Totals, Discounts)',
+    'effect() to sync state with localStorage',
+  ],
+},
 ];

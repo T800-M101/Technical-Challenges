@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { debounceTime, distinctUntilChanged, finalize, shareReplay, Subject, switchMap, tap } from 'rxjs';
-import { CountryService } from '../../core/services/country.service';
 import { AsyncPipe, DecimalPipe } from '@angular/common';
+import { CountryService } from '../../core/services/country-service/country.service';
 
 @Component({
   selector: 'app-http-api',

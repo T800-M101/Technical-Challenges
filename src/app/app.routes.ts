@@ -31,11 +31,11 @@ export const routes: Routes = [
       }
     ]
   },
-  // {
-  //   path: 'component-library',
-  //   loadComponent: () =>
-  //     import('./features/component-library/component-library.component').then(m => m.ComponentLibraryComponent),
-  // },
+  {
+    path: 'signals-store',
+    loadComponent: () =>
+      import('./features/signals-store/signals-store.component').then(m => m.SignalsStoreComponent),
+  },
   {
     path: '**',
     redirectTo: '',

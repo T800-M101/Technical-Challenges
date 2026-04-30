@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { AuthService } from '../../core/auth.service';
+import { AuthService } from '../../core/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-auth-guard-demo',

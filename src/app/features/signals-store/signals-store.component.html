@@ -1,0 +1,78 @@
+<div class="max-w-7xl mx-auto p-6">
+  <header class="mb-10">
+    <h1 class="text-3xl font-extrabold text-white mb-2">
+      Tech Store <span class="text-indigo-500">Signals</span>
+    </h1>
+    <p class="text-gray-400">Manage your state with the latest Angular features.</p>
+  </header>
+
+  <div class="flex flex-col lg:flex-row gap-10">
+    <!-- Products Grid -->
+    <div class="flex-1">
+      <app-products-list></app-products-list>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <aside class="w-full lg:w-96">
+      <div class="bg-white rounded-[2.5rem] p-8 sticky top-6 shadow-2xl">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl font-black text-gray-900">Your Cart</h2>
+          <span class="bg-indigo-100 text-indigo-600 px-4 py-1 rounded-full text-sm font-bold">
+            {{ store.count() }} items
+          </span>
+        </div>
+
+        <!-- Cart Items -->
+        <div class="space-y-4 max-h-[400px] overflow-y-auto mb-8 pr-2">
+          @for (item of store.items(); track item.id) {
+          <div class="flex items-center gap-4 group">
+            <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center">
+              <img [src]="item.image" [alt]="item.name" class="w-full h-full object-cover rounded-xl">
+            </div>
+            <div class="flex-1">
+              <p class="font-bold text-gray-800 text-sm leading-tight">{{ item.name }}</p>
+              <p class="text-xs text-gray-400">Qty: {{ item.quantity }}</p>
+            </div>
+            <div class="text-right">
+              <p class="font-bold text-gray-900 text-sm">${{ item.price * item.quantity }}</p>
+              <button (click)="store.removeItem(item.id)"
+                class="text-[10px] text-red-400 hover:text-red-600 font-bold uppercase tracking-tighter">
+                Remove
+              </button>
+            </div>
+          </div>
+          } @empty {
+          <div class="text-center py-10">
+            <i class="fas fa-shopping-basket text-gray-200 text-5xl mb-4"></i>
+            <p class="text-gray-400 text-sm">Your cart is empty</p>
+          </div>
+          }
+        </div>
+
+        <!-- Totals -->
+        <div class="border-t border-gray-100 pt-6 space-y-3">
+          <div class="flex justify-between text-gray-500 text-sm">
+            <span>Subtotal</span>
+            <span class="font-medium text-gray-900">${{ store.subtotal() | number:'1.2-2' }}</span>
+          </div>
+          <div class="flex justify-between text-gray-500 text-sm">
+            <span>Tax (16%)</span>
+            <span class="font-medium text-gray-900">${{ store.tax() | number:'1.2-2' }}</span>
+          </div>
+          <div class="flex justify-between items-end pt-2">
+            <span class="text-gray-900 font-bold">Total Amount</span>
+            <span class="text-3xl font-black text-indigo-600 leading-none">
+              ${{ store.total() | number:'1.2-2' }}
+            </span>
+          </div>
+        </div>
+
+        <button [disabled]="store.count() === 0"
+          class="w-full mt-8 bg-gray-900 hover:bg-black disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold py-4 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3">
+          Checkout Now
+          <i class="fas fa-arrow-right text-xs"></i>
+        </button>
+      </div>
+    </aside>
+  </div>
+</div>

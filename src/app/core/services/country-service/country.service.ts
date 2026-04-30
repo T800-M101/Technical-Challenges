@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
-import { Country } from '../models/country.model';
+import { Country } from '../../models/country.model';
+
 
 @Injectable({
   providedIn: 'root'
