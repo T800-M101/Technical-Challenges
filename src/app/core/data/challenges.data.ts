@@ -35,10 +35,10 @@ export const CHALLENGES: Challenge[] = [
     id: 'auth-guard',
     title: 'Auth Guard + Route Protection',
     description:
-      'Authentication system with functional guards, post-login redirection, nested route protection, and token management in localStorage.',
+      'Authentication system with functional guards, post-login redirection, nested route protection, and token management in localStorage. (Fake login data: memo@example.com | pass123)',
     difficulty: 'advanced',
     tags: ['Router', 'Guards', 'Auth'],
-    route: '/auth-guard',
+    route: '/auth-guard-demo',
     completedAt: '2026-04',
     highlights: [
       'Functional canActivate (Angular 15+)',

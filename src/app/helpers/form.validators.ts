@@ -45,7 +45,7 @@ export function usernameFormatValidator(): ValidatorFn {
   };
 }
 
-// ─── Asíncrono ────────────────────────────────────────────────────────────────
+// ─── Asynchronous ────────────────────────────────────────────────────────────────
 
 /** Simulates an HTTP call that checks whether the email is already registered */
 export function emailTakenValidator(): AsyncValidatorFn {
